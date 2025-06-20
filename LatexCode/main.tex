@@ -42,6 +42,10 @@
 \usepackage{fancyhdr}
 \usepackage[numbers]{natbib}
 
+\usepackage{ragged2e}
+\justifying
+
+
 %----------------------------------------------------------------------------------------
 %	LOGIC
 %----------------------------------------------------------------------------------------
@@ -66,7 +70,9 @@
 %\usepackage{fetamont}
 %\usepackage[default]{gillius}
 %\usepackage[light,math]{iwona}
-%\usepackage[thin]{roboto} 
+%\usepackage[thin]{roboto}
+
+\usepackage{fontsize}
 
 % set font default
 \renewcommand*\familydefault{\sfdefault} 	
@@ -75,6 +81,7 @@
 % more font size definitions
 \usepackage{moresize}
 
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue]{hyperref}
 %----------------------------------------------------------------------------------------
 %	FONT AWESOME ICONS
 %---------------------------------------------------------------------------------------- 
@@ -112,6 +119,11 @@
 % icon with email link
 \newcommand{\iconemail}[5]{ 						
     \vcenteredhbox{\icon{#1}{#2}{#5}}  \hspace{2pt} \href{mailto:#4}{\textcolor{#5}{#3}}
+}
+
+% icon with email link
+\newcommand{\iconDate}[5] {
+    \vcenteredhbox{\icon{#1}{#2}{#5}}  \hspace{2pt} \href{#4}{\textcolor{#5}{#3}}
 }
 
 %----------------------------------------------------------------------------------------
@@ -205,7 +217,8 @@
 % can also be used for other boxes / environments
 \newcommand{\mpwidth}{\linewidth-\fboxsep-\fboxsep}
 	
-
+\usepackage{overpic}    % Pour superposer du texte sur une image
+\usepackage{adjustbox} 
 
 %============================================================================%
 %
@@ -248,8 +261,8 @@
 \newcommand{\cvsection}[1] {
 	\vspace{5pt}
 	\cvtext{
-		\textbf{\LARGE{\textcolor{darkcol}{#1}}}\\[-4pt]
-		\textcolor{accentcol}{ \rule{0.2\textwidth}{1.5pt} } \\
+		\textbf{\Large{\textcolor{darkcol}{#1}}}\\[-4pt]
+		\textcolor{accentcol}{ \rule{0.7\textwidth}{1.5pt} } \\
 	}
 }
 
@@ -257,7 +270,7 @@
 	\vspace{5pt}
 	\cvtext{
 		\textbf{\Large{\textcolor{darkcol}{#1}}}\\[-4pt]
-		\textcolor{accentcol}{ \rule{0.2\textwidth}{1.5pt} } \\
+		\textcolor{accentcol}{ \rule{0.3\textwidth}{1.5pt} } \\
 	}
 }
 
@@ -265,7 +278,6 @@
 	\vspace{5pt}
 	\cvtext{
 		\textbf{\Huge{\textcolor{accentcol}{#1}}}\\[-4pt]
-		 
 	}
 }
 
@@ -321,6 +333,8 @@
 	 		\textcolor{black}{\textbf{#2}} & \colorbox{accentcol}{\makebox[0.32\mpwidth]{\textcolor{white}{\textbf{#1}}}} \\
 			\textcolor{maincol}{#3} & \\
 		\end{tabular*}\\[8pt]
+
+        \vspace{-15pt}
 	
 		\ifthenelse{\isempty{#4}}{}{
 			\cvtext{#4}\\
@@ -342,23 +356,21 @@
 \newcommand{\cvmetaevent}[4] {
 	\textcolor{maincol} { \cvtext{\textbf{\begin{flushleft}#1\end{flushleft}}}}
 
+    \vspace{-5pt}
+
 	\ifthenelse{\isempty{#2}}{}{
 	\textcolor{black} {\cvtext{\textbf{#2}} }
 	}
+
+    \vspace{-10pt}
 
 	\ifthenelse{\isempty{#3}}{}{
 		\cvtext{{ \textcolor{maincol} {#3} }}\\
 	}
 
+    \vspace{-15pt}
+
 	\cvtext{#4}\\
-}
-
-\newcommand{\cvmetacert}[2] {
-	\textcolor{maincol} { \cvtext{\textbf{\begin{flushleft}#1\end{flushleft}}}}
-
-	\ifthenelse{\isempty{#2}}{}{
-	\textcolor{black} {\cvtext{\textbf{#2}} }
-	}
 }
 
 
@@ -439,7 +451,8 @@
 %---------------------------------------------------------------------------------------
 %	META IMAGE
 %----------------------------------------------------------------------------------------
-\includegraphics[width=125pt]{resources/photo.png}	%trimming relative to image size
+
+\includegraphics[width=80pt, height=100pt]{resources/photo.png}	%trimming relative to image size
 
 %---------------------------------------------------------------------------------------
 %	META SKILLS
@@ -450,35 +463,133 @@
 		\LARGE{\textbf{\textcolor{maincol}{Baptiste Nouailhac}}} \\[2pt]
 		\normalsize{ \textcolor{maincol} {Ingénieur Cybersécurité} }
 \end{minipage}} \\
+
+\vspace{-8pt}
+
 %\icontext{CaretRight}{12}{AMSN à Monaco}{black}\\[6pt]
-\iconemail{Envelope}{16}{baptiste.nouailhac@pm.me}{baptiste.nouailhac@pm.me}{black}\\[6pt]
-\iconhref{File}{16}{Thèse professionnelle}{https://www.dropbox.com/scl/fi/grnpmbjjbvhjn29irooos/CEC_MSCyberSCID_thesis_Baptiste_NOUAILHAC.pdf?rlkey=eq2inscsrw4bxfh3a460krj9b&st=az67vyji&dl=0}{black}\\
-\iconhref{Linkedin}{16}{baptiste-nouailhac}{https://www.linkedin.com/in/baptiste-nouailhac/}{black}\\
+\iconemail{Envelope}{16}{baptiste.nouailhac@pm.me}{baptiste.nouailhac@pm.me}{black}\\[2pt]
+\vspace{-2pt}
+\iconhref{Flag}{16}{monégasque}{}{black}\\[2pt]
+%\vspace{-2pt}
+\iconhref{Mobile}{16}{06 80 86 73 46}{}{black}\\[2pt]
+\vspace{-2pt}
+\iconDate{Calendar}{16}{11 mars 2000}{}{black}\\[2pt]
+\vspace{-2pt}
+%\\iconhref{File}{16}{Thèse professionnelle}{https://www.dropbox.com/scl/fi/grnpmbjjbvhjn29irooos/CEC_MSCyberSCID_thesis_Baptiste_NOUAILHAC.pdf?rlkey=eq2inscsrw4bxfh3a460krj9b&st=az67vyji&dl=0}{black}\\
+\iconhref{Code}{16}{Portfolio}{https://bnouailhac.github.io/Personal-Portfolio/}{black}\\[2pt]
+\vspace{-2pt}
+\iconhref{Linkedin}{16}{baptiste-nouailhac}{https://www.linkedin.com/in/baptiste-nouailhac/}{black}\\[2pt]
+\vspace{-2pt}
 \iconhref{Github}{16}{BNouailhac}{https://github.com/BNouailhac}{black}\\
 
-\vspace{10pt}
+\vspace{-2pt}
 
-\cvsection{Certifications}
+\cvsectionsmall{Certifications}
 
-\cvmetacert
-{Certifications Cisco (Network Security - CCNA1 - CCNA2)}
-{Cisco Networking Academy}
+\vspace{-15pt}
 
-\cvmetacert
-{Secourisme PSC1}
-{Croix-Rouge monégasque}
+\textcolor{maincol} {
+  \begin{tabular*}{1\mpwidth}{p{0.98\mpwidth}}
+    \parbox{1\mpwidth}{\textbf  {\large Certifications Cisco}}
+   \end{tabular*}
+}
 
-\vspace{10pt}
+\vspace{5pt}
 
-\cvsection{Langues}
+\ifthenelse{\isempty{#2}}{}{
+    \textcolor{black} {
+      \begin{tabular*}{1\mpwidth}{p{0.98\mpwidth}}
+        \parbox{1\mpwidth}{\textbf{
+        \begin{tabular}{ m{1.25cm} m{3cm} }
+            \href{https://www.credly.com/badges/b20a3499-1df9-41a1-a831-ab6684cabdb1}{\includegraphics[width=1cm]{resources/CCNA-1.png}} & \href{https://www.credly.com/badges/b20a3499-1df9-41a1-a831-ab6684cabdb1}{CCNA 1} \\  
+            \href{https://www.credly.com/badges/6cfdfa6d-2b26-4602-9fa2-d24f30ffd937}{\includegraphics[width=1cm]{resources/CCNA-2.png}} & \href{https://www.credly.com/badges/6cfdfa6d-2b26-4602-9fa2-d24f30ffd937}{CCNA 2} \\  
+            \href{https://www.credly.com/badges/f73c5f80-2cd7-4559-9eb6-a1a836d1601e}{\includegraphics[width=1cm]{resources/CCNA-NS.png}} & \href{https://www.credly.com/badges/f73c5f80-2cd7-4559-9eb6-a1a836d1601e}{Network Security} \\  
+        \end{tabular}
+        }}
+       \end{tabular*}
+    }
+}
 
-\cvskill{Francais} {L1} {1} \\[-2pt]
+\vspace{5pt}
 
-\cvskill{Anglais} {L2} {0.7} \\[-2pt]
+\textcolor{maincol} {
+  \begin{tabular*}{1\mpwidth}{p{0.98\mpwidth}}
+    \parbox{1\mpwidth}{\textbf  {\large Certifications Croix-Rouge}}
+   \end{tabular*}
+}
 
-\cvskill{Chinois} {} {0.3} \\[-2pt]
+\vspace{-5pt}
 
-\cvskill{Italiens} {} {0.1} \\[-2pt]
+\ifthenelse{\isempty{#2}}{}{
+    \textcolor{black} {
+      \begin{tabular*}{1\mpwidth}{p{0.98\mpwidth}}
+        \parbox{1\mpwidth}{\textbf{
+        \begin{tabular}{ m{0.5cm} m{3.8cm} }
+            \includegraphics[width=1.25cm]{resources/CRM.png} & 
+            \begin{itemize}\footnotesize
+                \item \href{https://www.croix-rouge.fr/formation/prevention-et-secours-civique-de-niveau-1-psc1}{Prévention et secours civiques de niveau 1}
+                \item \href{https://www.croix-rouge.fr/formation-professionnelle/premiers-secours-en-equipe-de-niveau-1-pse1}{Premiers secours en équipe de niveau 1}
+                \item Premiers secours psychologiques
+            \end{itemize}\\
+        \end{tabular}
+        }}
+       \end{tabular*}
+    }
+}
+
+\textcolor{maincol} { 
+  \begin{tabular*}{1\mpwidth}{p{0.98\mpwidth}}
+    \parbox{1\mpwidth}{\textbf  {\large \href{https://www.etsglobal.org/fr/en/digital-score-report/2C4EE79E1F7887F6B4483C94792F6331ACA034CC767A358B70CCBC56D841D5A2MzdmeHRjWk9nMVJWb3JvWFl2cVUxcmVMQk9tUWpHWlVGNlU5WjJEMVhiZEVzVnlh}{TOEIC® Listening and Reading (score 845)} }}
+   \end{tabular*}
+}
+
+\cvsectionsmall{Langues}
+
+\vspace{-20pt}
+
+\begin{center} % Centre l'ensemble
+    \begin{tabular}{m{1.5cm} m{1.5cm} m{1.5cm}} % Crée une grille avec 3 colonnes
+        % Image 1
+        \begin{overpic}[width=1cm]{resources/france.png}
+            \put(-20, 90){\textbf{Maternel}} % Positionne le texte au-dessus
+        \end{overpic}
+        &
+        % Image 2
+        \begin{overpic}[width=1cm]{resources/britain.png}
+            \put(27.5, 90){\textbf{B2}}
+        \end{overpic}
+        &
+        % Image 3
+        \begin{overpic}[width=1cm]{resources/china.png}
+            \put(2.5, 90){\textbf{HSK2}}
+        \end{overpic}
+    \end{tabular}
+\end{center}
+
+\vspace{-12pt}
+
+\cvsectionsmall{Extra-professionnel}
+
+\vspace{-25pt}
+
+\begin{itemize}
+    \item Secouriste bénévole Croix-Rouge
+    \item Veille Cyber
+    \item Activité sportive régulière
+\end{itemize}
+
+\vspace{-7pt}
+
+\cvsectionsmall{Soft Skills}
+
+\vspace{-25pt}
+
+\begin{itemize}
+    \item Travail d’équipe
+    \item Gestion de Projet
+    \item Autonomie
+    \item Adaptation
+\end{itemize}
 
 \newpage
 
@@ -494,62 +605,140 @@
 %	WORK EXPERIENCE
 %----------------------------------------------------------------------------------------
 
-\vspace{10pt}
-\cvsection{Expérience professionnelle}
-\vspace{4pt}
+\cvsection{Expériences professionnelles}
+
+\vspace{-20pt}
+
+\cvevent
+{03/2025 - 05/2025}
+	{Développeur Front (3 mois)}
+	{\href{http://www.myitmanager.org/}{MyItManager}}
+	{\begin{itemize}
+        \setlength{\parskip}{-1pt}
+        \item Développement d'un dashboard pour le Grand Prix de Monaco 2025 de contrôle de flux et d'événements provenant de bornes Wifi et Pads Zebra connectés.
+        \item Gestion des données par API pour la visualisation de statistiques détaillées par pad ou par porte, et gestion des incidents (\textbf{C\#/.NET}, \textbf{WPF}, \textbf{Telerik}, \textbf{Javascript})
+    \end{itemize}}
+	\vfill\null
+
+\vspace{-12pt}
 
 \cvevent
 {04/2024 - 10/2024}
-	{Ingénieur Cybersécurité }
+	{Ingénieur Cybersécurité (7 mois)}
 	{\href{https://amsn.gouv.mc/}{Agence Monégasque de Sécurité Numérique (AMSN)}}
-	{Stage de 7 mois réalisé dans le cadre de mon Mastère Spécialisé (CYBERSCID) à l'agence national de cybersécurité de l'Etat de Monaco (équivalent de l'ANSSI Français). Réalisation de missions de développement en soutien des capacités opérationnelles du CERT-MC (Dévelopement Python, usage de MISP et Suricata).}
+	{\begin{itemize}
+        \setlength{\parskip}{-1pt}
+        %\item Stage de 7 mois réalisé dans le cadre de mon Mastère Spécialisé à l’agence nationale de cybersécurité de l’Etat de Monaco (équivalent de l’ANSSI)
+        \item Développement d'outils de création de règles de détection automatisées pour les sondes de détection (IDS) utilisées par l'Agence (\textbf{Python}, \textbf{MISP}, \textbf{Suricata}, \textbf{VMware}). \href{https://www.dropbox.com/scl/fi/grnpmbjjbvhjn29irooos/CEC_MSCyberSCID_thesis_Baptiste_NOUAILHAC.pdf?rlkey=eq2inscsrw4bxfh3a460krj9b&e=1&st=az67vyji&dl=0}{\textbf{\textit{Sujet de thèse professionnelle}}}
+        \item Réalisation de mission d'analyste SOC de niveau 1 en soutient du SOC-MC (\textbf{Splunk}, \textbf{VirusTotal}, \textbf{Shodan})
+        %\item \href{https://www.dropbox.com/scl/fi/3i69r87uswokbqv6wdjbt/Lettre-Recommandation-AMSN.pdf?rlkey=qkaty6qs8dkguaaamci4r1l1d&st=qvtggy3i&dl=0}{\textbf{\textit{Lettre de recommandation}}} de la part du directeur de l'agence
+    \end{itemize}}
 	\vfill\null
+
+\vspace{-12pt}
 
 \cvevent
 {08/2022 - 08/2023}
-	{Développeur full-stack}
+	{Développeur Full-Stack (1 an)}
 	{\href{https://livmeds.com/}{Livmed's}}
-	{6 mois de stage puis 6 mois de CDD au seins de la startup Nicoise dans le monde médical. Dévelopement en javascript sur les interfaces web, mobile et backend de la société (ReactJS - ReactNative - NodeJS)}
+	{\begin{itemize}
+        \setlength{\parskip}{-1pt}
+        %\item 6 mois de stage puis 6 mois de CDD au sein de la startup Nicoise
+        \item Développement continue en Agile des interfaces web, mobile et backend de la société (\textbf{ReactJS}, \textbf{ReactNative}, \textbf{NodeJS}, \textbf{SQL})
+        \item Mise en conformité \textbf{RGPD} des données de l'entreprise
+    \end{itemize}}
 	\vfill\null
+
+\vspace{-12pt}
 
 \cvevent
 {2019 - 2021}
-	{Stagiaire développeur full-stack}
+	{Développeur stagiaire (9 mois)}
 	{\href{https://www.syselio.com/}{Syselio}}
-	{2 stages de 6 mois réalisés entre 2019 et 2021 pour la société de prestation de service informatique monégasque Syselio. Dévelopement en javascript et ASP.NET sur les sites en ligne de la société}
+	{\begin{itemize}
+        \setlength{\parskip}{-1pt}
+        %\item 2 stages de 5 et 4 mois réalisés entre 2019 et 2021 pour la société de prestation de service informatique
+        \item Réalisation de missions de développement en \textbf{javascript} et \textbf{ASP.NET} pour l'ESN monégasque.
+    \end{itemize}}
 	\vfill\null
 
- \vspace{20pt}
+ \vspace{-18pt}
 
 %---------------------------------------------------------------------------------------
 %	EDUCATION
 %----------------------------------------------------------------------------------------
 
 \cvsection{Diplômes}
+\vspace{-28pt}
 
 \cvmetaevent
 {09/2023 - 10/2024}
-{\href{https://www.centrale-mediterranee.fr/fr/formation/formations-expertes/mastere-specialiser-cybersecurite-systemes-complexes-industrie}{Mastère Spécialisé® Cybersécurité systèmes complexes Industrie et Défense (CYBERSCID)}}
+{\href{https://www.centrale-mediterranee.fr/fr/formation/formations-expertes/mastere-specialiser-cybersecurite-systemes-complexes-industrie}{Mastère Spécialisé® Cybersécurité systèmes complexes Industrie et Défense (CyberSCID)}}
 {Centrale Méditerranée et l'École de l‘air et de l’espace}
-{En partenariat avec le Commissariat à l’Énergie Atomique et aux Énergies Alternatives (CEA) et le Commandement de la Cyberdéfense (COMCYBER). Cette formation post-master (bac +6, certifiée par l'ANSSI) est dédiée aux problématiques de cybersécurité dans les systèmes de l’industrie et de la Défense.}
+{\begin{itemize}
+    \setlength{\parskip}{-1.5pt}
+    \item Formation labellisée par l’ANSSI (Bac+6) en partenariat avec le Commissariat à l’Énergie Atomique et aux Énergies Alternatives (CEA) et le Commandement de la Cyberdéfense (COMCYBER).
+    \item Gouvernance et Cybersécurité \textbf{(Ebios, Cartographie, MCO/MCS, CERT/SOC)}
+    \item Réseaux et administration \textbf{(Certifications CCNA, Mise en place d'architecture sécurisée)}
+    %\item Introduction à l'automatisation \textbf{(PLC/API, SCADA, HMI, pyramide du CIM)}
+\end{itemize}}
+
+\vspace{-17.5pt}
 
 \cvmetaevent
 {2018 - 2023}
 {\href{https://www.epitech.eu/programme-grande-ecole-informatique/}{Titre d'expert en technologies de l'information}}
-{EPITECH - Master (Bac+5)}
-{Un cursus comprenant près de 80 projets, permettant d'acquérir des compétences très solides dans tous les domaines de l'informatique. Une formation diplômante spécialisée dans le développement logiciel.}
+{EPITECH - Master (Bac+5, RNCP Niveau 7)}
+{\begin{itemize}
+    \setlength{\parskip}{-1pt}
+    \item Spécialisation : Développement logiciel, gestion de projet, innovation technologique
+    \item Méthodologie : Apprentissage par projets, autonomie, adaptabilité, 2 ans d'expérience en entreprise
+    %\item Langues: \textbf{C/C++}, \textbf{Javascript}, \textbf{Python}, \textbf{Dart/Flutter}, \textbf{SQL}, \textbf{Git}, \textbf{Bash}
+\end{itemize}}
+
+\vspace{-18pt}
 
 \cvmetaevent
 {08/2021 - 02/2022}
 {\href{http://en.njtu.edu.cn/}{Graduate Student Program}}
 {Beijing Jiaotong University}
- {Dans le cadre de ma quatrième année de cursus à EPITECH, j'ai eu l'opportunité d'étudier pendant un semestre à l'université chinoise de Pékin "Beijing Jiaotong University". Ce fut l'occasion pour moi de développer de nombreuses compétences informatiques avancées dans un environnement nouveau et enrichissant.}
+{\begin{itemize}
+    \setlength{\parskip}{-2pt}
+    \item Un semestre réalisé à  l’université chinoise de Pékin "Beijing Jiaotong
+University" dans le cadre de ma quatrième année de cursus à EPITECH.
+\end{itemize}}
 
-\vspace{50pt}
+\vspace{-15pt}
 
-\hrulefill
+  \cvsection{Compétences}
 
-\phantom{Lorem, \today }J'ai développé ce CV en LaTeX
+ \vspace{-25pt}
+
+ \begin{itemize} 
+    \item \textit{Language maîtrisées :} \textbf{C/C++}, \textbf{Javascript}, \textbf{Python}, \textbf{Java}, \textbf{Dart/Flutter}, \textbf{SQL}, \textbf{Bash}
+    \item \textit{Outils :} \textbf{Git}, \textbf{Splunk}, \textbf{Pandas}, \textbf{Wireshark}, \textbf{MISP}, \textbf{Suricata}, \textbf{VirtualBox}, \textbf{VMware}, \textbf{Windows}, \textbf{Linux}
+    \item \textit{Réseaux :} \textbf{VLAN}, \textbf{Routing}, \textbf{Firewall}, \textbf{IPS/IDS}, \textbf{VPN}, \textbf{IPv4/IPv6}
+\end{itemize}
+
+%\begin{center}
+%\begin{tabular}{m{4cm} m{4cm}} % Crée une grille avec 3 colonnes
+        % Image 1
+%        \begin{itemize}
+%            \setlength{\parskip}{-1.5pt}
+%            \item Travail d'équipe
+%            \item Gestion de Projet
+%            \item Gestion de crise
+%        \end{itemize}
+%        &
+        % Image 2
+%        \begin{itemize}
+%            \setlength{\parskip}{-1.5pt}
+%            \item Autonomie
+%            \item Adaptation
+%            \item Écoute
+%        \end{itemize}
+%    \end{tabular}
+%\end{center}
 
 \end{rightcolumn}
 \end{paracol}
